@@ -4,7 +4,7 @@
             "name": "csv_data",
             "columns": [
                 {
-                    "name": "Year",
+                    "name": "Yea,r",
                     "type": "integer",
                     "nullable": false,
                     "precision": 4

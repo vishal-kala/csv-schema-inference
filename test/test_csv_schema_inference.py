@@ -1,14 +1,13 @@
 from csv_delimiter_detector import CsvDelimiterDetector
 from csv_schema_inference import CsvSchemaInference
 
-NUMBER_OF_ROWS_TO_CONSIDER = 100000
 
 if __name__ == "__main__":
     csv_file_path = './data/industry_sample_data.csv'
     csv_file_path2 = './data/industry_data.csv'
-    output_file_path = './output/table.json'
+    output_file_path = './output/industry_data_table.json'
 
-    delim_detector = CsvDelimiterDetector(csv_file_path2, NUMBER_OF_ROWS_TO_CONSIDER)
+    delim_detector = CsvDelimiterDetector(csv_file_path2, 100)
     delimiter = delim_detector.detect_delimiter()
 
     print(f"Detected delimiter: '{delimiter}'")
