@@ -9,16 +9,15 @@ from value_type_detector import ValueTypeDetector
 MAX_LENGTH_OF_DATA = 1000
 MAX_ROWS_TO_CONSIDER = 5000
 
+
 class CsvSchemaInference:
-    def __init__(self, delimiter, csv_file_path, output_json_file_path,
-                 max_rows=MAX_ROWS_TO_CONSIDER, max_length=MAX_LENGTH_OF_DATA):
+    def __init__(self, delimiter, csv_file_path, max_rows=MAX_ROWS_TO_CONSIDER, max_length=MAX_LENGTH_OF_DATA):
 
         self.max_length = max_length
         self.max_rows = max_rows
 
         self.delimiter = delimiter
         self.csv_file_path = csv_file_path
-        self.output_json_file_path = output_json_file_path
 
         self.rows = None
         self.value_type_cache = {}
@@ -187,7 +186,9 @@ class CsvSchemaInference:
 
         return self.schema
 
-    def write_schema(self):
+    def build_metadata(self):
+        table_name = os.path.splitext(os.path.basename(self.csv_file_path))[0]
+
         # Create a dictionary to store metadata
         metadata = {
             "tables": [
@@ -195,7 +196,7 @@ class CsvSchemaInference:
         }
 
         table_info = {
-            "name": "csv_data",
+            "name": table_name,
             "columns": []
         }
 
@@ -224,12 +225,5 @@ class CsvSchemaInference:
             table_info["columns"].append(column_info)
 
         metadata["tables"].append(table_info)
-
-        os.makedirs(os.path.dirname(self.output_json_file_path), exist_ok=True)
-        with open(self.output_json_file_path, 'w') as json_file:
-            json.dump(metadata, json_file, indent=4)
-
-        print(f'WriteSchema: Output File: {self.output_json_file_path}')
-        print(f'WriteSchema: Metadata: \n {json.dumps(metadata, indent=4)}')
 
         return metadata

@@ -14,4 +14,4 @@ if __name__ == "__main__":
 
     type_detector = CsvSchemaInference(delimiter, csv_file_path2, output_file_path, 1000000)
     type_detector.infer_schema()
-    type_detector.write_schema()
+    type_detector.build_metadata()

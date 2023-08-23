@@ -1,0 +1,134 @@
+{
+    "table_group": "industry",
+    "tables": [
+        {
+            "name": "industry_data",
+            "columns": [
+                {
+                    "name": "Year",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 4
+                },
+                {
+                    "name": "Industry_aggregation_NZSIOC",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 7
+                },
+                {
+                    "name": "Industry_code_NZSIOC",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "Industry_name_NZSIOC",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 72
+                },
+                {
+                    "name": "Units",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 18
+                },
+                {
+                    "name": "Variable_code",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 3
+                },
+                {
+                    "name": "Variable_name",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 53
+                },
+                {
+                    "name": "Variable_category",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 21
+                },
+                {
+                    "name": "Value",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "Industry_code_ANZSIC06",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 112
+                }
+            ]
+        },
+        {
+            "name": "debt_data",
+            "columns": [
+                {
+                    "name": "ID",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 4
+                },
+                {
+                    "name": "Ranking",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "Debt_Taken",
+                    "type": "boolean",
+                    "nullable": false
+                },
+                {
+                    "name": "Amount",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "Date_Y",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "Date_M",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "Date_D",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 10
+                },
+                {
+                    "name": "TS_1",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "TS_2",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 19
+                },
+                {
+                    "name": "TS_3",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 19
+                }
+            ]
+        }
+    ]
+}
