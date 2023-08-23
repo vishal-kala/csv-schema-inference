@@ -1,0 +1,69 @@
+{
+    "tables": [
+        {
+            "name": "csv_data",
+            "columns": [
+                {
+                    "name": "Year",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 4
+                },
+                {
+                    "name": "Industry_aggregation_NZSIOC",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 7
+                },
+                {
+                    "name": "Industry_code_NZSIOC",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "Industry_name_NZSIOC",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 72
+                },
+                {
+                    "name": "Units",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 18
+                },
+                {
+                    "name": "Variable_code",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 3
+                },
+                {
+                    "name": "Variable_name",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 53
+                },
+                {
+                    "name": "Variable_category",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 21
+                },
+                {
+                    "name": "Value",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "Industry_code_ANZSIC06",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 112
+                }
+            ]
+        }
+    ]
+}
