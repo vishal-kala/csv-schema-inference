@@ -77,9 +77,9 @@
                 },
                 {
                     "name": "Ranking",
-                    "type": "string",
-                    "nullable": false,
-                    "length": 32
+                    "type": "integer",
+                    "nullable": true,
+                    "precision": 5
                 },
                 {
                     "name": "Debt_Taken",
@@ -88,45 +88,76 @@
                 },
                 {
                     "name": "Amount",
-                    "type": "string",
-                    "nullable": false,
-                    "length": 32
+                    "type": "float",
+                    "nullable": true,
+                    "precision": 4,
+                    "scale": 2
                 },
                 {
                     "name": "Date_Y",
-                    "type": "string",
-                    "nullable": false,
-                    "length": 32
+                    "type": "date",
+                    "nullable": true,
+                    "format": "YYYY-mm-dd"
                 },
                 {
                     "name": "Date_M",
-                    "type": "string",
-                    "nullable": false,
-                    "length": 32
+                    "type": "date",
+                    "nullable": true,
+                    "format": "dd/mm/YYYY"
                 },
                 {
                     "name": "Date_D",
-                    "type": "string",
-                    "nullable": false,
-                    "length": 10
+                    "type": "date",
+                    "nullable": true,
+                    "format": "mm-dd-YYYY"
                 },
                 {
                     "name": "TS_1",
-                    "type": "string",
-                    "nullable": false,
-                    "length": 32
+                    "type": "timestamp",
+                    "nullable": true,
+                    "format": "YYYY-mm-dd HH:MI:SS"
                 },
                 {
                     "name": "TS_2",
-                    "type": "string",
-                    "nullable": false,
-                    "length": 19
+                    "type": "timestamp",
+                    "nullable": true,
+                    "format": "mm/dd/YYYY HH:MI:SS"
                 },
                 {
                     "name": "TS_3",
-                    "type": "string",
+                    "type": "timestamp",
+                    "nullable": true,
+                    "format": "mm-dd-YYYY HH:MI:SS"
+                }
+            ]
+        },
+        {
+            "name": "invoice",
+            "columns": [
+                {
+                    "name": "Invoice_ID",
+                    "type": "integer",
                     "nullable": false,
-                    "length": 19
+                    "precision": 1
+                },
+                {
+                    "name": "Invoice_Date",
+                    "type": "date",
+                    "nullable": false,
+                    "format": "YYYY/mm/dd"
+                },
+                {
+                    "name": "Payment_Date",
+                    "type": "date",
+                    "nullable": false,
+                    "format": "mm/dd/YYYY"
+                },
+                {
+                    "name": "Amount",
+                    "type": "float",
+                    "nullable": false,
+                    "precision": 10,
+                    "scale": 2
                 }
             ]
         }

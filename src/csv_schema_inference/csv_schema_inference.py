@@ -56,10 +56,14 @@ class CsvSchemaInference:
                                                             "max_length": str_length,
                                                             "max_precision": number_precision,
                                                             "max_scale": number_scale,
+                                                            "sample_data": [value],
                                                             "date_format": {}}
 
         else:
             self.schema[index]["types_found"][data_type]["count"] += 1
+            if len(self.schema[index]["types_found"][data_type]["sample_data"]) < 10:
+                if value not in self.schema[index]["types_found"][data_type]["sample_data"]:
+                    self.schema[index]["types_found"][data_type]["sample_data"].append(value)
 
             # Store the max length of string
             if data_type == DataTypes.DATA_TYPE_STRING:
@@ -149,10 +153,14 @@ class CsvSchemaInference:
             if len(types.keys()) == 2:
                 if DataTypes.DATA_TYPE_INTEGER in types.keys() and DataTypes.DATA_TYPE_FLOAT in types.keys():
                     self.schema[c]["data_type"] = DataTypes.DATA_TYPE_FLOAT
-                    self.schema[c]["max_precision"] = self.schema[c]['types_found'][DataTypes.DATA_TYPE_FLOAT][
-                        "max_precision"]
-                    self.schema[c]["max_scale"] = self.schema[c]['types_found'][DataTypes.DATA_TYPE_FLOAT][
-                        "max_scale"]
+
+                    max_scale = self.schema[c]['types_found'][DataTypes.DATA_TYPE_FLOAT]["max_scale"]
+                    self.schema[c]["max_scale"] = max_scale
+
+                    max_precision_float = self.schema[c]['types_found'][DataTypes.DATA_TYPE_FLOAT]["max_precision"]
+                    max_precision_int = self.schema[c]['types_found'][DataTypes.DATA_TYPE_INTEGER]["max_precision"]
+
+                    self.schema[c]["max_precision"] = max(max_precision_float, max_precision_int + max_scale)
                 else:
                     self.schema[c]["data_type"] = DataTypes.DATA_TYPE_STRING
 

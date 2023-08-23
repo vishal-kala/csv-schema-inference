@@ -47,7 +47,7 @@ class CsvDelimiterDetector:
 
     def _set_header(self):
         # Read the header row
-        self.header = self.rows[0]
+        self.header = self.rows[0].rstrip()
         print(f'SetHeader: Header row: {self.header}')
 
     # Read the first row and determine the delimiter list based on the number of occurrences of the delimiter.
