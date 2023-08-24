@@ -1,7 +1,7 @@
 -- Begin --
 -- Script to copy data from staging to raw --
 use role DATA_ENGINEER;
-use warehouse DATA_ENGINEER;
+use warehouse COMPUTE_DEV_CORE;
 use database RAW_WIP;
 use schema HEALTH_DATA;
 
