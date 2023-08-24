@@ -195,7 +195,7 @@ class CsvSchemaInference:
         return self.schema
 
     def build_metadata(self):
-        table_name = os.path.splitext(os.path.basename(self.csv_file_path))[0]
+        entity_name = os.path.splitext(os.path.basename(self.csv_file_path))[0]
 
         # Create a dictionary to store metadata
         metadata = {
@@ -203,8 +203,8 @@ class CsvSchemaInference:
             ]
         }
 
-        table_info = {
-            "name": table_name,
+        entity_info = {
+            "name": entity_name,
             "fields": []
         }
 
@@ -230,9 +230,9 @@ class CsvSchemaInference:
             if data_type == DataTypes.DATA_TYPE_INTEGER:
                 column_info["precision"] = self.schema[c]["max_precision"]
 
-            table_info["fields"].append(column_info)
+            entity_info["fields"].append(column_info)
 
-        metadata["entities"].append(table_info)
+        metadata["entities"].append(entity_info)
 
         print(f'BuildMetadata: Metadata: \n {json.dumps(metadata, indent=4)}')
 
