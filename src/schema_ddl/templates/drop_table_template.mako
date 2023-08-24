@@ -8,7 +8,7 @@ use database ${sf_details['raw_db']['database']};
 use schema ${sf_details['raw_db']['schema']};
 % endif
 
-DROP TABLE ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${table['name']};
+DROP TABLE ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${entity['name']};
 
 % if is_last:
 -- End --

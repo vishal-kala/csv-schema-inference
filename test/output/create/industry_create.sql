@@ -1,5 +1,5 @@
 -- Begin --
--- Script to create all the necessary tables --
+-- Script to create all the necessary entities --
 
 use role DATA_ENGINEER;
 use warehouse DATA_ENGINEER;

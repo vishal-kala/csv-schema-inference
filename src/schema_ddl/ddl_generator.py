@@ -23,7 +23,7 @@ class DDLGenerator:
         self.config_file_path = config_file_path
 
     def generate_ddl(self):
-        # Load table metadata JSON data from the file
+        # Load entity metadata JSON data from the file
         with open(self.metadata_file_path, 'r') as json_file:
             schema_metadata = json.load(json_file)
 
@@ -64,20 +64,20 @@ class DDLGenerator:
                 template_content = template_file.read()
                 template = Template(template_content)
 
-            table_group = schema_metadata['table_group']
-            tables = schema_metadata['tables']
+            entity_group = schema_metadata['entity_group']
+            entities = schema_metadata['entities']
 
-            # Apply the template on all tables
-            for index, table in enumerate(tables):
-                table_name = table['name']
-                output_filename = os.path.join(output_path, output_pattern.format(table_name=table_name.lower(),
-                                                                                  table_group=table_group.lower()))
+            # Apply the template on all entities
+            for index, entity in enumerate(entities):
+                entity_name = entity['name']
+                output_filename = os.path.join(output_path, output_pattern.format(entity_name=entity_name.lower(),
+                                                                                  entity_group=entity_group.lower()))
 
-                # Combine table metadata and additional parameters
+                # Combine entity metadata and additional parameters
                 parameters = {
-                    "table": table,
+                    "entity": entity,
                     "is_first": (index == 0),
-                    "is_last": (index == len(tables) - 1),
+                    "is_last": (index == len(entities) - 1),
                     **additional_parameters
                 }
 
@@ -94,7 +94,7 @@ class DDLGenerator:
                     sql_file.write(rendered_ddl)
 
                 print(
-                    f"DDL code for table '{table_name}' using template '{template_name}' "
+                    f"Code for entity '{entity_name}' using template '{template_name}' "
                     f"has been generated and written to '{output_filename}'.")
 
     def _handle_name(self, input):
@@ -106,10 +106,10 @@ class DDLGenerator:
         return output
 
     def formalize_names(self, schema_metadata):
-        for table in schema_metadata['tables']:
-            table["name"] = self._handle_name(table["name"])
-            for column in table['columns']:
-                column["name"] = self._handle_name(column["name"])
+        for entity in schema_metadata['entities']:
+            entity["name"] = self._handle_name(entity["name"])
+            for field in entity['fields']:
+                field["name"] = self._handle_name(field["name"])
 
         return schema_metadata
 
@@ -117,14 +117,14 @@ class DDLGenerator:
         # Available length values in the desired pattern
         available_lengths = AVAILABLE_VARCHAR_LENGTHS
 
-        # Iterate through the tables and columns, and update their data types
-        for table in schema_metadata['tables']:
-            for column in table['columns']:
-                json_data_type = column['type']
+        # Iterate through the entities and columns, and update their data types
+        for entity in schema_metadata['entities']:
+            for field in entity['fields']:
+                json_data_type = field['type']
                 snowsql_data_type = None
 
                 if json_data_type == JSON_DATATYPE_STRING:
-                    length = column.get('length', 32)  # Default length is 32
+                    length = field.get('length', 32)  # Default length is 32
                     length = max(available_lengths[0], length)  # Ensure length is at least 32
                     for available_length in available_lengths[1:]:
                         if length <= available_length:
@@ -133,13 +133,13 @@ class DDLGenerator:
                     snowsql_data_type = f"VARCHAR({length})"
 
                 elif json_data_type == JSON_DATATYPE_INTEGER:
-                    precision = max(column.get('length', 16), 16)  # Default precision is 16
+                    precision = max(field.get('length', 16), 16)  # Default precision is 16
                     scale = 0
                     snowsql_data_type = f"NUMBER({precision}, {scale})"
 
                 elif json_data_type == JSON_DATATYPE_FLOAT:
-                    precision = max(column.get('length', 16), 16)  # Default precision is 16
-                    scale = max(column.get('precision', 4), 4)  # Default precision is 10
+                    precision = max(field.get('length', 16), 16)  # Default precision is 16
+                    scale = max(field.get('precision', 4), 4)  # Default precision is 10
                     snowsql_data_type = f"NUMBER({precision}, {scale})"
 
                 elif json_data_type == JSON_DATATYPE_BOOLEAN:
@@ -154,6 +154,6 @@ class DDLGenerator:
                 elif json_data_type == JSON_DATATYPE_TIME:
                     snowsql_data_type = f"TIME"
 
-                column['data_type'] = snowsql_data_type
+                field['data_type'] = snowsql_data_type
 
         return schema_metadata

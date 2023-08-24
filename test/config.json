@@ -2,15 +2,15 @@
     "base_output_path": "output",
     "template_mapping": {
         "create_table_template": {
-            "output_pattern": "{table_group}_create.sql",
+            "output_pattern": "{entity_group}_create.sql",
             "output_subdir": "create"
         },
         "drop_table_template": {
-            "output_pattern": "{table_group}_drop.sql",
+            "output_pattern": "{entity_group}_drop.sql",
             "output_subdir": "drop"
         },
         "copy_to_raw_template": {
-            "output_pattern": "{table_group}_copy_to_raw.sql",
+            "output_pattern": "{entity_group}_copy_to_raw.sql",
             "output_subdir": "copy_to_raw"
         }
     },

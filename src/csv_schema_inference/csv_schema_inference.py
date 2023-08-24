@@ -24,16 +24,16 @@ class CsvSchemaInference:
 
     def _set_header(self, header):
         self.header = header
-        self.column_names = [name.replace('"', '') for name in
+        self.field_names = [name.replace('"', '') for name in
                              list(csv.reader([self.header.rstrip()], delimiter=self.delimiter))[0]]
-        self.no_of_columns = len(self.column_names)
+        self.field_count = len(self.field_names)
 
     def _init_schema(self):
         self.schema = {}
 
-        for i in range(0, self.no_of_columns):
+        for i in range(0, self.field_count):
             self.schema[i] = {
-                "name": self.column_names[i],
+                "name": self.field_names[i],
                 "types_found": {
                 }
             }
@@ -99,14 +99,14 @@ class CsvSchemaInference:
             if len(values) == 0:
                 continue
 
-            if len(values) < self.no_of_columns:
+            if len(values) < self.field_count:
                 print(f'Not enough columns in the row # {rowid + 2}, cannot infer schema')
-                print(f'Expected number of columns: {self.no_of_columns}, found {len(values)}')
+                print(f'Expected number of columns: {self.field_count}, found {len(values)}')
 
                 raise Exception(f'Not enough columns in the row # {rowid + 2}, cannot infer schema. '
-                                f'Expected number of columns: {self.no_of_columns}, found {len(values)}')
+                                f'Expected number of columns: {self.field_count}, found {len(values)}')
 
-            if len(values) > self.no_of_columns:
+            if len(values) > self.field_count:
                 print(f'Extra columns found in the row # {rowid + 2}, record will be ignored during inference')
                 continue
 
@@ -199,13 +199,13 @@ class CsvSchemaInference:
 
         # Create a dictionary to store metadata
         metadata = {
-            "tables": [
+            "entities": [
             ]
         }
 
         table_info = {
             "name": table_name,
-            "columns": []
+            "fields": []
         }
 
         for c in self.schema:
@@ -230,8 +230,10 @@ class CsvSchemaInference:
             if data_type == DataTypes.DATA_TYPE_INTEGER:
                 column_info["precision"] = self.schema[c]["max_precision"]
 
-            table_info["columns"].append(column_info)
+            table_info["fields"].append(column_info)
 
-        metadata["tables"].append(table_info)
+        metadata["entities"].append(table_info)
+
+        print(f'BuildMetadata: Metadata: \n {json.dumps(metadata, indent=4)}')
 
         return metadata

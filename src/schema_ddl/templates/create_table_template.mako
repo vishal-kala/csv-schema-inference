@@ -1,6 +1,6 @@
 % if is_first:
 -- Begin --
--- Script to create all the necessary tables --
+-- Script to create all the necessary entities --
 
 use role ${sf_details['role']};
 use warehouse ${sf_details['role']};
@@ -9,11 +9,11 @@ use schema ${sf_details['raw_db']['schema']};
 
 % endif
 
-CREATE OR REPLACE TABLE ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${table['name']} (
-%   for column in table['columns']:
-    ${column['name']} ${column['data_type']} \
-    % if 'nullable' in column:
-        ${'NOT NULL' if not column['nullable'] else ''} \
+CREATE OR REPLACE TABLE ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${entity['name']} (
+%   for field in entity['fields']:
+    ${field['name']} ${field['data_type']} \
+    % if 'nullable' in field:
+        ${'NOT NULL' if not field['nullable'] else ''} \
     % endif
     ,
 %   endfor

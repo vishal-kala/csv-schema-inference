@@ -18,8 +18,8 @@ class CsvFolderInference:
         print(f'PerformInference: Inferring all the files from folder: {self.folder_path}')
 
         metadata_all = {
-            "table_group": os.path.basename(self.folder_path),
-            "tables": []
+            "entity_group": os.path.basename(self.folder_path),
+            "entities": []
         }
 
         # Loop through all files in the folder
@@ -39,7 +39,7 @@ class CsvFolderInference:
                 type_detector.infer_schema()
                 metadata = type_detector.build_metadata()
 
-                metadata_all["tables"].append(metadata["tables"][0])
+                metadata_all["entities"].append(metadata["entities"][0])
 
         os.makedirs(os.path.dirname(self.output_file_path), exist_ok=True)
         with open(self.output_file_path, 'w') as json_file:

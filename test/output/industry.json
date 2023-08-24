@@ -1,9 +1,9 @@
 {
-    "table_group": "industry",
-    "tables": [
+    "entity_group": "industry",
+    "entities": [
         {
             "name": "industry_data",
-            "columns": [
+            "fields": [
                 {
                     "name": "Year",
                     "type": "integer",
@@ -68,7 +68,7 @@
         },
         {
             "name": "debt_data",
-            "columns": [
+            "fields": [
                 {
                     "name": "ID",
                     "type": "integer",
@@ -133,7 +133,7 @@
         },
         {
             "name": "invoice",
-            "columns": [
+            "fields": [
                 {
                     "name": "Invoice_ID",
                     "type": "integer",
