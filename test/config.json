@@ -2,14 +2,35 @@
     "base_output_path": "output",
     "template_mapping": {
         "create_table_template": {
-            "output_pattern": "{table_name}_create.sql",
+            "output_pattern": "{table_group}_create.sql",
             "output_subdir": "create"
         },
         "drop_table_template": {
-            "output_pattern": "{table_name}_drop.sql",
+            "output_pattern": "{table_group}_drop.sql",
             "output_subdir": "drop"
+        },
+        "copy_to_raw_template": {
+            "output_pattern": "{table_group}_copy_to_raw.sql",
+            "output_subdir": "copy_to_raw"
         }
     },
     "additional_parameters": {
+        "sf_details": {
+            "role": "DATA_ENGINEER",
+            "warehouse": "COMPUTE_DEV_CORE",
+            "data_folder": "/home/reference_data/data_files",
+            "raw_db": {
+                "database": "RAW_WIP",
+                "schema": "HEALTH_DATA"
+            },
+            "std_db": {
+                "database": "STD_WIP",
+                "schema": "REFERENCE_DATA"
+            },
+            "report_db": {
+                "database": "REPORT_WIP",
+                "schema": "REPORT_DATA"
+            }
+        }
     }
 }

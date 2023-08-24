@@ -3,7 +3,7 @@ from src.schema_ddl.ddl_generator import DDLGenerator
 
 def main():
     ddl_generator = DDLGenerator(
-        metadata_file_path='./output/industry_data_table.json',
+        metadata_file_path='./output/industry.json',
         config_file_path='./config.json'
     )
     ddl_generator.generate_ddl()

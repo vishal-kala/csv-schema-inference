@@ -44,6 +44,19 @@ class DDLGenerator:
             output_subdir = template_info['output_subdir']
             output_path = os.path.join(base_output_path, output_subdir)
 
+            print(f"GenerateDDL: Output folder path is {output_path}")
+
+            # Delete existing files from the output location
+            if os.path.exists(output_path) and os.path.isdir(output_path):
+                for filename in os.listdir(output_path):
+                    file_path = os.path.join(output_path, filename)
+
+                    # Check if it's a file (not a subdirectory)
+                    if os.path.isfile(file_path):
+                        # Delete the file
+                        os.remove(file_path)
+                        print(f"GenerateDDL: Deleted file: {file_path}")
+
             current_dir = os.path.dirname(os.path.abspath(__file__))
 
             # Load the Mako template
@@ -51,14 +64,20 @@ class DDLGenerator:
                 template_content = template_file.read()
                 template = Template(template_content)
 
+            table_group = schema_metadata['table_group']
+            tables = schema_metadata['tables']
+
             # Apply the template on all tables
-            for table in schema_metadata['tables']:
+            for index, table in enumerate(tables):
                 table_name = table['name']
-                output_filename = os.path.join(output_path, output_pattern.format(table_name=table_name.lower()))
+                output_filename = os.path.join(output_path, output_pattern.format(table_name=table_name.lower(),
+                                                                                  table_group=table_group.lower()))
 
                 # Combine table metadata and additional parameters
                 parameters = {
-                    "tables": [table],
+                    "table": table,
+                    "is_first": (index == 0),
+                    "is_last": (index == len(tables) - 1),
                     **additional_parameters
                 }
 
@@ -70,7 +89,8 @@ class DDLGenerator:
 
                 # Write the generated DDL code to the output SQL file
                 os.makedirs(output_path, exist_ok=True)
-                with open(output_filename, 'w') as sql_file:
+
+                with open(output_filename, 'a') as sql_file:
                     sql_file.write(rendered_ddl)
 
                 print(
@@ -92,7 +112,6 @@ class DDLGenerator:
                 column["name"] = self._handle_name(column["name"])
 
         return schema_metadata
-
 
     def build_data_type(self, schema_metadata):
         # Available length values in the desired pattern
@@ -119,8 +138,8 @@ class DDLGenerator:
                     snowsql_data_type = f"NUMBER({precision}, {scale})"
 
                 elif json_data_type == JSON_DATATYPE_FLOAT:
-                    precision = max(column.get('length', 16), 16)   # Default precision is 16
-                    scale = max(column.get('precision', 4), 4)      # Default precision is 10
+                    precision = max(column.get('length', 16), 16)  # Default precision is 16
+                    scale = max(column.get('precision', 4), 4)  # Default precision is 10
                     snowsql_data_type = f"NUMBER({precision}, {scale})"
 
                 elif json_data_type == JSON_DATATYPE_BOOLEAN:
