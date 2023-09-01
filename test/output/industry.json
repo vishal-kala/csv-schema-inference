@@ -3,6 +3,7 @@
     "entities": [
         {
             "name": "industry_data",
+            "delimiter": ",",
             "fields": [
                 {
                     "name": "Year",
@@ -68,6 +69,7 @@
         },
         {
             "name": "debt_data",
+            "delimiter": ",",
             "fields": [
                 {
                     "name": "ID",
@@ -133,6 +135,7 @@
         },
         {
             "name": "invoice",
+            "delimiter": ",",
             "fields": [
                 {
                     "name": "Invoice_ID",

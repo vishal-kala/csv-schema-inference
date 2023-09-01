@@ -25,7 +25,7 @@ class CsvSchemaInference:
     def _set_header(self, header):
         self.header = header
         self.field_names = [name.replace('"', '') for name in
-                             list(csv.reader([self.header.rstrip()], delimiter=self.delimiter))[0]]
+                            list(csv.reader([self.header.rstrip()], delimiter=self.delimiter))[0]]
         self.field_count = len(self.field_names)
 
     def _init_schema(self):
@@ -205,6 +205,7 @@ class CsvSchemaInference:
 
         entity_info = {
             "name": entity_name,
+            "delimiter": self.delimiter,
             "fields": []
         }
 
