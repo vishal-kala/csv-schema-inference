@@ -101,9 +101,17 @@ class DDLGenerator:
         # Define a regular expression pattern to match one or more consecutive special characters
         pattern = r'[^a-zA-Z0-9_]+'
 
-        output = re.sub(pattern, '_', input).lower()
+        # If the input starts with a numeric character, replace it with an underscore
+        if input and input[0].isdigit():
+            input = '_' + input
 
-        return output
+        # Use re.sub() to replace matches of the pattern with underscores
+        sanitized_input = re.sub(pattern, '_', input).lower()
+
+        # Use re.sub() again to replace multiple underscores with a single underscore
+        sanitized_output = re.sub(r'_+', '_', sanitized_input)
+
+        return sanitized_output
 
     def formalize_names(self, schema_metadata):
         for entity in schema_metadata['entities']:
