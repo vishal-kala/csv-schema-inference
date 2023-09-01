@@ -26,7 +26,7 @@ class CsvFolderInference:
         for filename in os.listdir(self.folder_path):
 
             # Check if the file has a .csv extension
-            if filename.endswith(".csv"):
+            if filename.endswith((".csv", ".txt")):
                 # Construct the full path to the CSV file
                 csv_file_path = os.path.join(self.folder_path, filename)
                 print(f"PerformInference: Found CSV file: {csv_file_path}")
