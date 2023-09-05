@@ -26,7 +26,7 @@ CREATE OR REPLACE TABLE RAW_WIP.HEALTH_DATA.debt_data (
     id NUMBER(16, 0) NOT NULL ,
     ranking NUMBER(16, 0) ,
     debt_taken BOOLEAN NOT NULL ,
-    amount NUMBER(16, 4) ,
+    amount NUMBER(16, 8) ,
     date_y DATE ,
     date_m DATE ,
     date_d DATE ,
@@ -41,7 +41,7 @@ CREATE OR REPLACE TABLE RAW_WIP.HEALTH_DATA.invoice (
     invoice_id NUMBER(16, 0) NOT NULL ,
     invoice_date DATE NOT NULL ,
     payment_date DATE NOT NULL ,
-    amount NUMBER(16, 10) NOT NULL ,
+    amount NUMBER(32, 20) NOT NULL ,
     raw_load_time TIMESTAMP ,
     task_run_id VARCHAR(32)
 );

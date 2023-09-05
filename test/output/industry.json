@@ -159,8 +159,8 @@
                     "name": "Amount",
                     "type": "float",
                     "nullable": false,
-                    "precision": 10,
-                    "scale": 2
+                    "precision": 23,
+                    "scale": 15
                 }
             ]
         }

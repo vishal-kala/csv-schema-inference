@@ -17,6 +17,13 @@ JSON_DATATYPE_INTEGER = "integer"
 JSON_DATATYPE_BOOLEAN = "boolean"
 
 
+def round_up_to_next_level(value):
+    if (value % 4) > 0:
+        value = value + (4 - value % 4)
+
+    return value + 4
+
+
 class DDLGenerator:
     def __init__(self, metadata_file_path, config_file_path):
         self.metadata_file_path = metadata_file_path
@@ -141,13 +148,14 @@ class DDLGenerator:
                     snowsql_data_type = f"VARCHAR({length})"
 
                 elif json_data_type == JSON_DATATYPE_INTEGER:
-                    precision = max(field.get('length', 16), 16)  # Default precision is 16
+                    precision = max(round_up_to_next_level(field.get('precision', 16)), 16)  # Default precision is 16
                     scale = 0
                     snowsql_data_type = f"NUMBER({precision}, {scale})"
 
                 elif json_data_type == JSON_DATATYPE_FLOAT:
-                    precision = max(field.get('length', 16), 16)  # Default precision is 16
-                    scale = max(field.get('precision', 4), 4)  # Default precision is 10
+                    precision = max(round_up_to_next_level(field.get('precision', 16) + 4), 16)  # Default precision is 16
+                    scale = max(round_up_to_next_level(field.get('scale', 4)), 4)  # Default scale is 4
+
                     snowsql_data_type = f"NUMBER({precision}, {scale})"
 
                 elif json_data_type == JSON_DATATYPE_BOOLEAN:
