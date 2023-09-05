@@ -11,11 +11,7 @@ use schema ${sf_details['raw_db']['schema']};
 
 CREATE OR REPLACE TABLE ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${entity['name']} (
 %   for field in entity['fields']:
-    ${field['name']} ${field['data_type']} \
-    % if 'nullable' in field:
-        ${'NOT NULL' if not field['nullable'] else ''} \
-    % endif
-    ,
+    ${field['name']} ${field['data_type']},
 %   endfor
     raw_load_time TIMESTAMP ,
     task_run_id VARCHAR(32)
