@@ -18,8 +18,9 @@ CREATE OR REPLACE TABLE RAW_WIP.HEALTH_DATA.industry_data (
     variable_category VARCHAR(64),
     value VARCHAR(64),
     industry_code_anzsic06 VARCHAR(128),
-    raw_load_time TIMESTAMP ,
-    task_run_id VARCHAR(32)
+    raw_load_time TIMESTAMP,
+    task_run_id VARCHAR(32),
+    table_name VARCHAR(64)
 );
 
 CREATE OR REPLACE TABLE RAW_WIP.HEALTH_DATA.debt_data (
@@ -33,8 +34,9 @@ CREATE OR REPLACE TABLE RAW_WIP.HEALTH_DATA.debt_data (
     ts_1 TIMESTAMP,
     ts_2 TIMESTAMP,
     ts_3 TIMESTAMP,
-    raw_load_time TIMESTAMP ,
-    task_run_id VARCHAR(32)
+    raw_load_time TIMESTAMP,
+    task_run_id VARCHAR(32),
+    table_name VARCHAR(64)
 );
 
 CREATE OR REPLACE TABLE RAW_WIP.HEALTH_DATA.invoice (
@@ -42,6 +44,7 @@ CREATE OR REPLACE TABLE RAW_WIP.HEALTH_DATA.invoice (
     invoice_date DATE,
     payment_date DATE,
     amount NUMBER(32, 20),
-    raw_load_time TIMESTAMP ,
-    task_run_id VARCHAR(32)
+    raw_load_time TIMESTAMP,
+    task_run_id VARCHAR(32),
+    table_name VARCHAR(64)
 );

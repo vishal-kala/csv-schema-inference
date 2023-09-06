@@ -13,19 +13,24 @@ put file://${sf_details['data_folder']}/${entity['name']}.csv \
 
 COPY INTO ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${entity['name']} (
 %   for field in entity['fields']:
-        ${field['name']} ,
+        ${field['name']},
 %   endfor
-        raw_load_time ,
-        task_run_id
+        raw_load_time,
+        task_run_id,
+        table_name
     )
 FROM (SELECT
 %   for field in entity['fields']:
         $${loop.index+1} ,
 %   endfor
-        timestamp_ntz(current_timestamp) ,
-        newid()
+        timestamp_ntz(current_timestamp),
+        newid(),
+        '${entity['name']}'
         FROM @${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.%${entity['name']})
-FILE_FORMAT = (TYPE = CSV SKIP_HEADER = 1 FIELD_OPTIONALLY_ENCLOSED_BY = '"');
+        FILE_FORMAT = (TYPE = CSV
+                SKIP_HEADER = 1
+                FIELD_DELIMITER = '${entity['delimiter']}'
+                FIELD_OPTIONALLY_ENCLOSED_BY = '"');
 
 -- End: Loading data for ${entity['name']}
 

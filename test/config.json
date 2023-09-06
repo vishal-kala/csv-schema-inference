@@ -1,17 +1,29 @@
 {
     "base_output_path": "output",
     "template_mapping": {
-        "create_table_template": {
-            "output_pattern": "{entity_group}_create.sql",
-            "output_subdir": "create"
+        "raw_zone/create_raw_table_template": {
+            "output_pattern": "{entity_group}_create_raw_tables.sql",
+            "output_subdir": "raw_zone/create"
         },
-        "drop_table_template": {
-            "output_pattern": "{entity_group}_drop.sql",
-            "output_subdir": "drop"
+        "raw_zone/drop_raw_table_template": {
+            "output_pattern": "{entity_group}_drop_raw_tables.sql",
+            "output_subdir": "raw_zone/drop"
         },
-        "copy_to_raw_template": {
-            "output_pattern": "{entity_group}_copy_to_raw.sql",
-            "output_subdir": "copy_to_raw"
+        "raw_zone/copy_data_to_raw_template": {
+            "output_pattern": "{entity_group}_copy_data_to_raw.sql",
+            "output_subdir": "raw_zone/load_data"
+        },
+        "trusted_zone/create_trusted_table_template": {
+            "output_pattern": "{entity_group}_create_trusted_tables.sql",
+            "output_subdir": "trusted_zone/create"
+        },
+        "trusted_zone/drop_trusted_table_template": {
+            "output_pattern": "{entity_group}_drop_trusted_tables.sql",
+            "output_subdir": "trusted_zone/drop"
+        },
+        "trusted_zone/copy_raw_to_trusted_template": {
+            "output_pattern": "{entity_group}_copy_raw_to_trusted.sql",
+            "output_subdir": "trusted_zone/load_data"
         }
     },
     "additional_parameters": {
@@ -23,8 +35,8 @@
                 "database": "RAW_WIP",
                 "schema": "HEALTH_DATA"
             },
-            "std_db": {
-                "database": "STD_WIP",
+            "trusted_db": {
+                "database": "TRUSTED_WIP",
                 "schema": "REFERENCE_DATA"
             },
             "report_db": {
