@@ -14,6 +14,6 @@ CREATE OR REPLACE TABLE ${sf_details['raw_db']['database']}.${sf_details['raw_db
     ${field['name']} ${field['data_type']},
 %   endfor
     raw_load_time TIMESTAMP,
-    task_run_id VARCHAR(32),
+    task_run_id VARCHAR(48),
     table_name VARCHAR(64)
 );

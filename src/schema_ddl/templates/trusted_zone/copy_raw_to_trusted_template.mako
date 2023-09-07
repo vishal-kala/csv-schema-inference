@@ -8,29 +8,23 @@ use schema ${sf_details['trusted_db']['schema']};
 % endif
 
 -- Begin: Loading data for ${entity['name']}
-put file://${sf_details['data_folder']}/${entity['name']}.csv \
-    @${sf_details['trusted_db']['database']}.${sf_details['trusted_db']['schema']}.%${entity['name']};
-
-COPY INTO ${sf_details['trusted_db']['database']}.${sf_details['trusted_db']['schema']}.${entity['name']} (
+INSERT INTO ${sf_details['trusted_db']['database']}.${sf_details['trusted_db']['schema']}.${entity['name']}
+ (
 %   for field in entity['fields']:
         ${field['name']},
 %   endfor
         raw_load_time,
         task_run_id,
-        table_name
-    )
-FROM (SELECT
+        load_timestamp
+ )
+   SELECT
 %   for field in entity['fields']:
-        $${loop.index+1} ,
+        ${field['name']},
 %   endfor
-        timestamp_ntz(current_timestamp),
-        newid(),
-        '${entity['name']}'
-        FROM @${sf_details['trusted_db']['database']}.${sf_details['trusted_db']['schema']}.%${entity['name']})
-        FILE_FORMAT = (TYPE = CSV
-                SKIP_HEADER = 1
-                FIELD_DELIMITER = '${entity['delimiter']}'
-                FIELD_OPTIONALLY_ENCLOSED_BY = '"');
+        raw_load_time,
+        task_run_id,
+        current_timestamp
+   FROM ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${entity['name']};
 
 -- End: Loading data for ${entity['name']}
 

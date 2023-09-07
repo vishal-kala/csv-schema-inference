@@ -23,8 +23,8 @@ FROM (SELECT
 %   for field in entity['fields']:
         $${loop.index+1} ,
 %   endfor
-        timestamp_ntz(current_timestamp),
-        newid(),
+        current_timestamp,
+        uuid_string(),
         '${entity['name']}'
         FROM @${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.%${entity['name']})
         FILE_FORMAT = (TYPE = CSV
