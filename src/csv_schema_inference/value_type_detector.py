@@ -13,7 +13,6 @@ class ValueTypeDetector:
             # Handle exponential values.
             if 'e' in value or 'E' in value:
                 value = '{:f}'.format(float_value)
-                print(value)
                 return DataTypes.DATA_TYPE_FLOAT, len(str(value)) - 1, len(str(value).split('.')[1])
             elif float_value.is_integer() and CHAR_DECIMAL not in value:
                 return DataTypes.DATA_TYPE_INTEGER, len(str(int(value))), 0
