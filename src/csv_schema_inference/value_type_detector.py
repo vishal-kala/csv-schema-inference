@@ -112,13 +112,3 @@ class ValueTypeDetector:
         result = significand * (10 ** exponent)
 
         return str(result)
-
-    # Input in exponential notation
-    exponential_input = input("Enter a number in exponential notation (e.g., 3.2e3): ")
-
-    try:
-        # Convert and display the result in regular decimal format
-        decimal_result = convert_exponential_to_decimal(exponential_input)
-        print("Regular Decimal Format:", decimal_result)
-    except ValueError:
-        print("Invalid input. Please enter a number in exponential notation.")
