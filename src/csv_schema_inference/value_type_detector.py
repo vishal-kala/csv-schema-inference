@@ -97,20 +97,3 @@ class ValueTypeDetector:
         }
 
         return value_type
-
-    # Function to convert exponential notation to regular decimal format
-    def convert_exponential_to_decimal(self, exponential_notation):
-        # Split the input into significand and exponent parts
-        parts = exponential_notation.lower().split('e')
-        significand_str = parts[0]
-        exponent_str = parts[1]
-
-        # Convert significand and exponent to floating-point numbers
-        significand = float(significand_str)
-        exponent = int(exponent_str)
-
-        # Calculate the result by moving the decimal point
-        result = significand * (10 ** exponent)
-        print(result)
-
-        return str(result)
