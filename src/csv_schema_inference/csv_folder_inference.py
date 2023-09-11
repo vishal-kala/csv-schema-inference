@@ -4,7 +4,7 @@ import os
 from csv_delimiter_detector import CsvDelimiterDetector
 from csv_schema_inference import CsvSchemaInference
 
-MAX_ROWS_TO_CONSIDER_FOR_DATATYPE = 5000
+MAX_ROWS_TO_CONSIDER_FOR_DATATYPE = 50000
 MAX_ROWS_TO_CONSIDER_FOR_DELIM = 100
 
 

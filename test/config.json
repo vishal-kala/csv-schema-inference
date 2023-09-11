@@ -28,16 +28,16 @@
     },
     "additional_parameters": {
         "sf_details": {
-            "role": "DATA_ENGINEER",
-            "warehouse": "COMPUTE_DEV_CORE",
-            "data_folder": "/home/reference_data/data_files",
+            "role": "MGSSFCOREDATAENGDEV",
+            "warehouse": "COMPUTE_DEVCORE",
+            "data_folder": "/home/vishal.kala/hce_data/data_files",
             "raw_db": {
                 "database": "RAW_WIP",
-                "schema": "HEALTH_DATA"
+                "schema": "HCE"
             },
             "trusted_db": {
                 "database": "TRUSTED_WIP",
-                "schema": "REFERENCE_DATA"
+                "schema": "HCE"
             },
             "report_db": {
                 "database": "REPORT_WIP",
