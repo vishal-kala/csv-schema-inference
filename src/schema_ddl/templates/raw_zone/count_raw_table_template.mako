@@ -9,4 +9,6 @@ use schema ${sf_details['raw_db']['schema']};
 
 % endif
 
-SELECT COUNT(1) FROM ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${entity['name']} ;
+SELECT table_name, task_run_id, raw_load_time, COUNT(1) as record_count
+FROM ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${entity['name']}
+GROUP BY table_name, task_run_id, raw_load_time ;

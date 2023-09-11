@@ -11,6 +11,10 @@ use schema ${sf_details['raw_db']['schema']};
 put file://${sf_details['data_folder']}/${entity['name']}.csv \
     @${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.%${entity['name']};
 
+SET generated_uuid = (SELECT UUID_STRING());
+
+SET current_ts = (SELECT CURRENT_TIMESTAMP());
+
 COPY INTO ${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.${entity['name']} (
 %   for field in entity['fields']:
         ${field['name']},
@@ -23,8 +27,8 @@ FROM (SELECT
 %   for field in entity['fields']:
         $${loop.index+1} ,
 %   endfor
-        current_timestamp,
-        uuid_string(),
+        $current_ts,
+        $generated_uuid,
         '${entity['name']}'
         FROM @${sf_details['raw_db']['database']}.${sf_details['raw_db']['schema']}.%${entity['name']})
         FILE_FORMAT = (TYPE = CSV
