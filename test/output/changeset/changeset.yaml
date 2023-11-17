@@ -1,0 +1,162 @@
+  - changeSet:
+      id: 'mgssfsysadmin-raw-healthcorum-facility_metrics-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_raw_healthcorum_facility_metrics.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_raw_healthcorum_facility_metrics.sql
+            stripComments: true
+
+  - changeSet:
+      id: 'mgssfsysadmin-trusted-healthcorum-facility_metrics-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_trusted_healthcorum_facility_metrics.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_trusted_healthcorum_facility_metrics.sql
+            stripComments: true
+  - changeSet:
+      id: 'mgssfsysadmin-raw-healthcorum-facility_metric_dim-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_raw_healthcorum_facility_metric_dim.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_raw_healthcorum_facility_metric_dim.sql
+            stripComments: true
+
+  - changeSet:
+      id: 'mgssfsysadmin-trusted-healthcorum-facility_metric_dim-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_trusted_healthcorum_facility_metric_dim.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_trusted_healthcorum_facility_metric_dim.sql
+            stripComments: true
+  - changeSet:
+      id: 'mgssfsysadmin-raw-healthcorum-facility_provider_dim-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_raw_healthcorum_facility_provider_dim.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_raw_healthcorum_facility_provider_dim.sql
+            stripComments: true
+
+  - changeSet:
+      id: 'mgssfsysadmin-trusted-healthcorum-facility_provider_dim-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_trusted_healthcorum_facility_provider_dim.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_trusted_healthcorum_facility_provider_dim.sql
+            stripComments: true
+  - changeSet:
+      id: 'mgssfsysadmin-raw-healthcorum-practice_metrics-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_raw_healthcorum_practice_metrics.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_raw_healthcorum_practice_metrics.sql
+            stripComments: true
+
+  - changeSet:
+      id: 'mgssfsysadmin-trusted-healthcorum-practice_metrics-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_trusted_healthcorum_practice_metrics.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_trusted_healthcorum_practice_metrics.sql
+            stripComments: true
+  - changeSet:
+      id: 'mgssfsysadmin-raw-healthcorum-practice_metric_dim-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_raw_healthcorum_practice_metric_dim.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_raw_healthcorum_practice_metric_dim.sql
+            stripComments: true
+
+  - changeSet:
+      id: 'mgssfsysadmin-trusted-healthcorum-practice_metric_dim-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_trusted_healthcorum_practice_metric_dim.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_trusted_healthcorum_practice_metric_dim.sql
+            stripComments: true
+  - changeSet:
+      id: 'mgssfsysadmin-raw-healthcorum-practice_provider_dim-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_raw_healthcorum_practice_provider_dim.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_raw_healthcorum_practice_provider_dim.sql
+            stripComments: true
+
+  - changeSet:
+      id: 'mgssfsysadmin-trusted-healthcorum-practice_provider_dim-sql'
+      author: Vishal
+      changes:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/create_trusted_healthcorum_practice_provider_dim.sql
+            stripComments: true
+      rollback:
+        - sqlFile:
+            dbms: 'snowflake'
+            path: db/create/rb_trusted_healthcorum_practice_provider_dim.sql
+            stripComments: true

@@ -12,7 +12,7 @@ class ValueTypeDetector:
 
             # Handle exponential values.
             if 'e' in value or 'E' in value:
-                value = self.convert_exponential_to_decimal(value)
+                value = '{:f}'.format(float_value)
                 return DataTypes.DATA_TYPE_FLOAT, len(str(value)) - 1, len(str(value).split('.')[1])
             elif float_value.is_integer() and CHAR_DECIMAL not in value:
                 return DataTypes.DATA_TYPE_INTEGER, len(str(int(value))), 0
@@ -96,29 +96,3 @@ class ValueTypeDetector:
         }
 
         return value_type
-
-    # Function to convert exponential notation to regular decimal format
-    def convert_exponential_to_decimal(self, exponential_notation):
-        # Split the input into significand and exponent parts
-        parts = exponential_notation.lower().split('e')
-        significand_str = parts[0]
-        exponent_str = parts[1]
-
-        # Convert significand and exponent to floating-point numbers
-        significand = float(significand_str)
-        exponent = int(exponent_str)
-
-        # Calculate the result by moving the decimal point
-        result = significand * (10 ** exponent)
-
-        return str(result)
-
-    # Input in exponential notation
-    exponential_input = input("Enter a number in exponential notation (e.g., 3.2e3): ")
-
-    try:
-        # Convert and display the result in regular decimal format
-        decimal_result = convert_exponential_to_decimal(exponential_input)
-        print("Regular Decimal Format:", decimal_result)
-    except ValueError:
-        print("Invalid input. Please enter a number in exponential notation.")

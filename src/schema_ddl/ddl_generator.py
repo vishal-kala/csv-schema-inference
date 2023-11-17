@@ -37,6 +37,7 @@ class DDLGenerator:
         # Build Data Type for columns
         schema_metadata = self.build_data_type(schema_metadata)
         schema_metadata = self.formalize_names(schema_metadata)
+        schema_metadata = self.add_entity_group(schema_metadata)
 
         # Load configuration from the file
         with open(self.config_file_path, 'r') as config_file:
@@ -77,12 +78,14 @@ class DDLGenerator:
             # Apply the template on all entities
             for index, entity in enumerate(entities):
                 entity_name = entity['name']
+                filename = entity['filename']
                 output_filename = os.path.join(output_path, output_pattern.format(entity_name=entity_name.lower(),
                                                                                   entity_group=entity_group.lower()))
 
                 # Combine entity metadata and additional parameters
                 parameters = {
                     "entity": entity,
+                    "filename": filename,
                     "is_first": (index == 0),
                     "is_last": (index == len(entities) - 1),
                     **additional_parameters
@@ -125,6 +128,12 @@ class DDLGenerator:
             entity["name"] = self._handle_name(entity["name"])
             for field in entity['fields']:
                 field["name"] = self._handle_name(field["name"])
+
+        return schema_metadata
+
+    def add_entity_group(self, schema_metadata):
+        for entity in schema_metadata['entities']:
+            entity["entity_group"] = self._handle_name(schema_metadata["entity_group"])
 
         return schema_metadata
 
