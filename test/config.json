@@ -42,14 +42,14 @@
         "sf_details": {
             "role": "MGSSFCOREDATAENGDEV",
             "warehouse": "COMPUTE_DEVCORE",
-            "data_folder": "/home/vishal.kala/healthcorum/data_files",
+            "data_folder": "/home/vishal.kala/hce_data/data_files",
             "raw_db": {
-                "database": "RAW_${mdp_suffix}",
-                "schema": "HEALTHCORUM"
+                "database": "RAW_WIP",
+                "schema": "HCE"
             },
             "trusted_db": {
-                "database": "TRUSTED_${mdp_suffix}",
-                "schema": "HEALTHCORUM"
+                "database": "TRUSTED_WIP",
+                "schema": "HCE"
             },
             "report_db": {
                 "database": "REPORT_${mdp_suffix}",
