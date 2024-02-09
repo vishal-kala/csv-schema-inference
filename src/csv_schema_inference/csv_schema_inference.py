@@ -195,7 +195,8 @@ class CsvSchemaInference:
         return self.schema
 
     def build_metadata(self):
-        entity_name = os.path.splitext(os.path.basename(self.csv_file_path))[0]
+        filename = os.path.basename(self.csv_file_path)
+        entity_name = os.path.splitext(filename)[0]
 
         # Create a dictionary to store metadata
         metadata = {
@@ -205,15 +206,16 @@ class CsvSchemaInference:
 
         entity_info = {
             "name": entity_name,
+            "filename": filename,
             "delimiter": self.delimiter,
             "fields": []
         }
 
-        for c in self.schema:
+        for i, c in enumerate(self.schema):
             data_type = self.schema[c]['data_type']
 
             column_info = {
-                "name": self.schema[c]['name'],
+                "name": self.schema[c]['name'] if self.schema[c]['name'] else f'Column {i+1}',
                 "type": data_type.lower(),
                 "nullable": self.schema[c]['nullable'],
             }

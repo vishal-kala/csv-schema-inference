@@ -2,45 +2,57 @@
     "base_output_path": "output",
     "template_mapping": {
         "raw_zone/create_raw_table_template": {
-            "output_pattern": "{entity_group}_create_raw_tables.sql",
+            "output_pattern": "create_raw_{entity_group}_{entity_name}.sql",
             "output_subdir": "raw_zone/create"
         },
         "raw_zone/drop_raw_table_template": {
-            "output_pattern": "{entity_group}_drop_raw_tables.sql",
+            "output_pattern": "rb_raw_{entity_group}_{entity_name}.sql",
             "output_subdir": "raw_zone/drop"
         },
         "raw_zone/copy_data_to_raw_template": {
             "output_pattern": "{entity_group}_copy_data_to_raw.sql",
             "output_subdir": "raw_zone/load_data"
         },
+        "raw_zone/count_raw_table_template": {
+            "output_pattern": "{entity_group}_count_raw_tables.sql",
+            "output_subdir": "raw_zone/count"
+        },
         "trusted_zone/create_trusted_table_template": {
-            "output_pattern": "{entity_group}_create_trusted_tables.sql",
+            "output_pattern": "create_trusted_{entity_group}_{entity_name}.sql",
             "output_subdir": "trusted_zone/create"
         },
         "trusted_zone/drop_trusted_table_template": {
-            "output_pattern": "{entity_group}_drop_trusted_tables.sql",
+            "output_pattern": "rb_trusted_{entity_group}_{entity_name}.sql",
             "output_subdir": "trusted_zone/drop"
         },
         "trusted_zone/copy_raw_to_trusted_template": {
             "output_pattern": "{entity_group}_copy_raw_to_trusted.sql",
             "output_subdir": "trusted_zone/load_data"
+        },
+         "trusted_zone/count_trusted_table_template": {
+            "output_pattern": "{entity_group}_count_trusted_tables.sql",
+            "output_subdir": "trusted_zone/count"
+        },
+        "liquibase_changesets_template": {
+            "output_pattern": "changeset.yaml",
+            "output_subdir": "changeset"
         }
     },
     "additional_parameters": {
         "sf_details": {
-            "role": "DATA_ENGINEER",
-            "warehouse": "COMPUTE_DEV_CORE",
-            "data_folder": "/home/reference_data/data_files",
+            "role": "MGSSFCOREDATAENGDEV",
+            "warehouse": "COMPUTE_DEVCORE",
+            "data_folder": "/home/vishal.kala/hce_data/data_files",
             "raw_db": {
                 "database": "RAW_WIP",
-                "schema": "HEALTH_DATA"
+                "schema": "HCE"
             },
             "trusted_db": {
                 "database": "TRUSTED_WIP",
-                "schema": "REFERENCE_DATA"
+                "schema": "HCE"
             },
             "report_db": {
-                "database": "REPORT_WIP",
+                "database": "REPORT_${mdp_suffix}",
                 "schema": "REPORT_DATA"
             }
         }

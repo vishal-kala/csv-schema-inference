@@ -1,0 +1,274 @@
+{
+    "entity_group": "healthcorum",
+    "entities": [
+        {
+            "name": "facility_metrics",
+            "filename": "facility_metrics.csv",
+            "delimiter": ",",
+            "fields": [
+                {
+                    "name": "npi",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 10
+                },
+                {
+                    "name": "metric_id",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 2
+                },
+                {
+                    "name": "metric_score",
+                    "type": "float",
+                    "nullable": false,
+                    "precision": 3,
+                    "scale": 2
+                }
+            ]
+        },
+        {
+            "name": "facility_metric_dim",
+            "filename": "facility_metric_dim.csv",
+            "delimiter": ",",
+            "fields": [
+                {
+                    "name": "metric_id",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 2
+                },
+                {
+                    "name": "metric_name",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 60
+                },
+                {
+                    "name": "metric_description",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 467
+                },
+                {
+                    "name": "metric_domain",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 15
+                }
+            ]
+        },
+        {
+            "name": "facility_provider_dim",
+            "filename": "facility_provider_dim.csv",
+            "delimiter": ",",
+            "fields": [
+                {
+                    "name": "npi",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 10
+                },
+                {
+                    "name": "name",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 70
+                },
+                {
+                    "name": "facility_type",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 26
+                },
+                {
+                    "name": "peer_group",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 25
+                },
+                {
+                    "name": "overall_score",
+                    "type": "float",
+                    "nullable": false,
+                    "precision": 2,
+                    "scale": 1
+                },
+                {
+                    "name": "appropriateness_score",
+                    "type": "float",
+                    "nullable": true,
+                    "precision": 2,
+                    "scale": 1
+                },
+                {
+                    "name": "cost_score",
+                    "type": "float",
+                    "nullable": true,
+                    "precision": 2,
+                    "scale": 1
+                },
+                {
+                    "name": "effectiveness_score",
+                    "type": "float",
+                    "nullable": true,
+                    "precision": 2,
+                    "scale": 1
+                },
+                {
+                    "name": "patient_panel",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                }
+            ]
+        },
+        {
+            "name": "practice_metrics",
+            "filename": "practice_metrics.csv",
+            "delimiter": ",",
+            "fields": [
+                {
+                    "name": "npi",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 10
+                },
+                {
+                    "name": "metric_id",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 3
+                },
+                {
+                    "name": "metric_score",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 1
+                }
+            ]
+        },
+        {
+            "name": "practice_metric_dim",
+            "filename": "practice_metric_dim.csv",
+            "delimiter": ",",
+            "fields": [
+                {
+                    "name": "metric_id",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 3
+                },
+                {
+                    "name": "metric_name",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 65
+                },
+                {
+                    "name": "metric_description",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 485
+                },
+                {
+                    "name": "metric_domain",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 15
+                }
+            ]
+        },
+        {
+            "name": "practice_provider_dim",
+            "filename": "practice_provider_dim.csv",
+            "delimiter": ",",
+            "fields": [
+                {
+                    "name": "npi",
+                    "type": "integer",
+                    "nullable": false,
+                    "precision": 10
+                },
+                {
+                    "name": "name",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 42
+                },
+                {
+                    "name": "subspecialty",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 55
+                },
+                {
+                    "name": "specialty_domain",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 55
+                },
+                {
+                    "name": "avg_risk",
+                    "type": "float",
+                    "nullable": false,
+                    "precision": 4,
+                    "scale": 2
+                },
+                {
+                    "name": "peer_group",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 132
+                },
+                {
+                    "name": "peer_avg_risk",
+                    "type": "float",
+                    "nullable": false,
+                    "precision": 3,
+                    "scale": 2
+                },
+                {
+                    "name": "overall_score",
+                    "type": "float",
+                    "nullable": false,
+                    "precision": 2,
+                    "scale": 1
+                },
+                {
+                    "name": "appropriateness_score",
+                    "type": "float",
+                    "nullable": false,
+                    "precision": 2,
+                    "scale": 1
+                },
+                {
+                    "name": "cost_score",
+                    "type": "float",
+                    "nullable": false,
+                    "precision": 2,
+                    "scale": 1
+                },
+                {
+                    "name": "effectiveness_score",
+                    "type": "float",
+                    "nullable": true,
+                    "precision": 2,
+                    "scale": 1
+                },
+                {
+                    "name": "patient_panel_prof",
+                    "type": "string",
+                    "nullable": false,
+                    "length": 32
+                },
+                {
+                    "name": "patient_panel_rx",
+                    "type": "string",
+                    "nullable": true,
+                    "length": 32
+                }
+            ]
+        }
+    ]
+}

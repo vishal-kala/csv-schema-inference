@@ -19,7 +19,7 @@ ALLOWED_DELIMITERS = [DELIMITER_COMMA, DELIMITER_COLON, DELIMITER_PIPE, DELIMITE
 def read_first_n_rows(file_path, no_of_rows):
     print(f'ReadFirstNRows: Reading first {no_of_rows} rows from csv file {file_path}')
 
-    with open(file_path, 'r', newline='') as file:
+    with open(file_path, 'r', newline='', encoding='utf-8') as file:
         # Initialize a list to store the first n rows
         first_n_rows = []
 
@@ -27,6 +27,7 @@ def read_first_n_rows(file_path, no_of_rows):
         for _ in range(no_of_rows):
             row = file.readline()
             if not row:
+                print(f'ReadFirstNRows: Reached last line at row # {_}')
                 break  # Stop if the end of file is reached
 
             first_n_rows.append(row)
